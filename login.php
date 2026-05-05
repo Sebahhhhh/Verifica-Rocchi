@@ -16,8 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password   = $_POST['password'] ?? '';
 
     if ($password === 'verifica') {
-
-        //cerca un istruttore con il nomeutente che è uguale al cognome suo
+    //  cerca un istruttore con il nomeutente che è uguale al cognome suo
         $stmt = $pdo->prepare("SELECT id_istruttore, nome, cognome FROM Istruttori WHERE LOWER(cognome) = LOWER(?)");
         $stmt->execute([$nomeutente]);
         $istruttore = $stmt->fetch();

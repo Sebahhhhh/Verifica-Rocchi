@@ -4,22 +4,28 @@ require_login();
 require 'config.php';
 
 $messaggio = '';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // lettura valori inseriti
     $id_corso  = (int)($_POST['id_corso'] ?? 0);
     $id_membro = (int)($_POST['id_membro'] ?? 0);
     $data_iscr = trim($_POST['data_iscrizione'] ?? '');
     $orario    = trim($_POST['orario_preferito'] ?? '');
 
+    // controlla se hai messo i dati o meno
     if (!$id_corso || !$id_membro || $data_iscr === '') {
         $messaggio = '<div class="msg-err">inserisci tutti i dati.</div>';
     } else {
+
+        // controlla solo se è gia presente o meno
         $chk = $pdo->prepare("SELECT 1 FROM Iscrizioni_Corsi WHERE id_corso = ? AND id_membro = ?");
         $chk->execute([$id_corso, $id_membro]);
 
         if ($chk->fetch()) {
             $messaggio = '<div class="msg-err">Questo membro è già iscritto.</div>';
         } else {
+
+            // Inserimento nel database
             $stmt = $pdo->prepare("
                 INSERT INTO Iscrizioni_Corsi (id_corso, id_membro, data_iscrizione, orario_preferito)
                 VALUES (?, ?, ?, ?)
@@ -30,6 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// varie query
+
+// query per select corsi
 $corsi = $pdo->query("
     SELECT c.id_corso, c.nome_corso, i.cognome, i.nome
     FROM Corsi c
@@ -37,8 +46,9 @@ $corsi = $pdo->query("
     ORDER BY c.nome_corso, i.cognome, i.nome
 ")->fetchAll();
 
+
+// query per la select dei membri
 $membri = $pdo->query("SELECT id_membro, nome, cognome FROM Membri ORDER BY cognome, nome")->fetchAll();
-$oggi = date('Y-m-d');
 
 
 ?>
@@ -64,7 +74,7 @@ $oggi = date('Y-m-d');
             <option value=""></option>
             <?php foreach ($corsi as $c): ?>
                 <option value="<?= $c['id_corso'] ?>">
-                    <?= htmlspecialchars($c['nome_corso'] . ' (' . $c['cognome'] . ' ' . $c['nome'] . ')') ?>
+                    <?= $c['nome_corso'] . ' (' . $c['cognome'] . ' ' . $c['nome'] . ')' ?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -74,7 +84,7 @@ $oggi = date('Y-m-d');
             <option value=""></option>
             <?php foreach ($membri as $m): ?>
                 <option value="<?= $m['id_membro'] ?>">
-                    <?= htmlspecialchars($m['cognome'] . ' ' . $m['nome']) ?>
+                    <?= $m['cognome'] . ' ' . $m['nome'] ?>
                 </option>
             <?php endforeach; ?>
         </select>
