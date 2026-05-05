@@ -11,6 +11,11 @@ $dati = $pdo->query("
     ORDER BY i.cognome, i.nome, c.nome_corso
 ")->fetchAll();
 
+// ordinamento in ordine alfabetico per cognome e nome dell'istruttore, poi per nome del corso
+// ...
+/ ....
+
+
 //
 // NON HO AVUTO TEMPO DI TERMINARLO
 //
