@@ -13,7 +13,7 @@ require_login();
 
 <h1>GESTIONALE</h1>
 <div class="box">
-    <h2>Funzioni disponibili</h2>
+    <h2>Lista operazioni possibili</h2>
     <ul>
         <li><a href="inserisci_iscrizione.php">Inserisci nuova iscrizione a un corso</a></li>
         <li> </li>
