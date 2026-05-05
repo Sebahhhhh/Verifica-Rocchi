@@ -70,6 +70,7 @@ if ($id_corso_sel) {
                         <form method="POST" action="cambia_corso.php">
                             <input type="hidden" name="id_iscrizione" value="<?= $m['id_iscrizione'] ?>">
                             <input type="hidden" name="id_corso_corrente" value="<?= $id_corso_sel ?>">
+                            <labl> Cambia Corso </labl>
                             <select name="id_corso_nuovo" required>
                                 <option value=""></option>
                                 <?php foreach ($tutti_corsi as $c): ?>
