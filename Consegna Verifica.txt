@@ -1,0 +1,11 @@
+Carica il database messo su classroom.
+
+- Tutte le funzionalità devono essere accessibili SOLO se l'utente ha effettuato l'accesso SOLO con il "nomeutente" uguale al proprio cognome e come password deve essere "verifica".
+
+- Inserire un nuovo iscritto ad un corso in cui insegna un istrutore, entrambi scelti da menù a tendinda.
+
+- Visualizzare per ogni istruttore il corso con il maggiore numero di iscritti. puerchè abbia ALMENO 5 iscritti. 
+
+- Elencare tutti gli iscritti ad un corso e aggiungo accanto un tasto "cambia corso", il cambio avverrà scegliendo il nuovo corso da menù a tendina .
+ 
+- Visualizzare il report in cui vengono visualizzati tutti i corsi tenuti da tutti gli istruttori elencati in ordine alfabetico di istruttore e corso e per ogni corso i dati relativi agli iscritti ordinati per nome e cognome. 
